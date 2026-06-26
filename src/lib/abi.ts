@@ -1,0 +1,92 @@
+export const signalHarborAbi = [
+  {
+    type: "function",
+    name: "userPulses",
+    stateMutability: "view",
+    inputs: [{ name: "", type: "address" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "userSwitches",
+    stateMutability: "view",
+    inputs: [{ name: "", type: "address" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "userStamps",
+    stateMutability: "view",
+    inputs: [{ name: "", type: "address" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "totalPulses",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "totalSwitches",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "totalStamps",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "pulseSignal",
+    stateMutability: "nonpayable",
+    inputs: [],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "flipSwitch",
+    stateMutability: "nonpayable",
+    inputs: [],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "stampPass",
+    stateMutability: "nonpayable",
+    inputs: [],
+    outputs: [],
+  },
+  {
+    type: "event",
+    name: "SignalPulsed",
+    inputs: [
+      { name: "user", type: "address", indexed: true },
+      { name: "userPulses", type: "uint256", indexed: false },
+      { name: "totalPulses", type: "uint256", indexed: false },
+    ],
+  },
+  {
+    type: "event",
+    name: "SwitchFlipped",
+    inputs: [
+      { name: "user", type: "address", indexed: true },
+      { name: "userSwitches", type: "uint256", indexed: false },
+      { name: "totalSwitches", type: "uint256", indexed: false },
+    ],
+  },
+  {
+    type: "event",
+    name: "PassStamped",
+    inputs: [
+      { name: "user", type: "address", indexed: true },
+      { name: "userStamps", type: "uint256", indexed: false },
+      { name: "totalStamps", type: "uint256", indexed: false },
+    ],
+  },
+] as const;
