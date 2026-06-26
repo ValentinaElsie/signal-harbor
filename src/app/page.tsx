@@ -239,7 +239,7 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,rgba(0,82,255,0.20),transparent_32%),radial-gradient(circle_at_75%_10%,rgba(94,234,212,0.18),transparent_28%),linear-gradient(180deg,rgba(6,17,31,0)_0%,#06111f_70%)]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-[repeating-linear-gradient(90deg,rgba(148,163,184,0.12)_0_1px,transparent_1px_34px)] opacity-50" />
 
-        <header className="relative z-10 flex items-center justify-between gap-3">
+        <header className="relative z-50 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded border border-[#5eead4]/40 bg-[#0b2236] shadow-[0_0_24px_rgba(94,234,212,0.28)]">
               <Anchor className="h-5 w-5 text-[#5eead4]" />
@@ -269,7 +269,7 @@ export default function Home() {
             </button>
 
             {walletMenuOpen ? (
-              <div className="absolute right-0 top-full z-30 mt-2 w-72 rounded border border-[#93c5fd]/25 bg-[#081827] p-2 shadow-2xl">
+              <div className="fixed right-4 top-20 z-[100] w-[min(18rem,calc(100vw-2rem))] rounded border border-[#93c5fd]/25 bg-[#081827] p-2 shadow-2xl shadow-black/50">
                 <div className="mb-2 flex items-center justify-between px-2 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#bfdbfe]">
                   Wallet Options
                   <button
