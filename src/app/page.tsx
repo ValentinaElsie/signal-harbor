@@ -257,9 +257,7 @@ export default function Home() {
           <div className="relative">
             <button
               type="button"
-              onClick={() =>
-                isConnected ? disconnect() : setWalletMenuOpen((open) => !open)
-              }
+              onClick={() => setWalletMenuOpen((open) => !open)}
               className="flex min-h-11 items-center gap-2 rounded border border-[#93c5fd]/35 bg-[#0a1a2b]/90 px-3 text-sm font-semibold text-white shadow-[0_0_22px_rgba(59,130,246,0.20)] transition hover:border-[#60a5fa]"
             >
               <span
@@ -270,8 +268,8 @@ export default function Home() {
               {isConnected ? formatAddress(address) : "Connect Wallet"}
             </button>
 
-            {walletMenuOpen && !isConnected ? (
-              <div className="absolute right-0 top-13 z-30 w-64 rounded border border-[#93c5fd]/25 bg-[#081827] p-2 shadow-2xl">
+            {walletMenuOpen ? (
+              <div className="absolute right-0 top-full z-30 mt-2 w-72 rounded border border-[#93c5fd]/25 bg-[#081827] p-2 shadow-2xl">
                 <div className="mb-2 flex items-center justify-between px-2 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#bfdbfe]">
                   Wallet Options
                   <button
@@ -282,18 +280,42 @@ export default function Home() {
                     <X className="h-4 w-4" />
                   </button>
                 </div>
-                {connectors.map((connector) => (
+                {isConnected ? (
                   <button
                     type="button"
-                    key={connector.uid}
-                    disabled={isConnectPending}
-                    onClick={() => void connectWallet(connector.id)}
+                    onClick={() => {
+                      disconnect();
+                      setWalletMenuOpen(false);
+                      setActiveAction("Wallet disconnected.");
+                    }}
                     className="mb-1 flex w-full items-center justify-between rounded border border-transparent px-3 py-2 text-left text-sm text-[#e0f2fe] transition hover:border-[#38bdf8]/40 hover:bg-[#0f2c45]"
                   >
-                    <span>{connector.name}</span>
-                    <Power className="h-4 w-4 text-[#5eead4]" />
+                    <span>Disconnect {formatAddress(address)}</span>
+                    <Power className="h-4 w-4 text-[#f87171]" />
                   </button>
-                ))}
+                ) : (
+                  <>
+                    {connectors.map((connector) => (
+                      <button
+                        type="button"
+                        key={connector.uid}
+                        disabled={isConnectPending}
+                        onClick={() => void connectWallet(connector.id)}
+                        className="mb-1 flex w-full items-center justify-between rounded border border-transparent px-3 py-2 text-left text-sm text-[#e0f2fe] transition hover:border-[#38bdf8]/40 hover:bg-[#0f2c45]"
+                      >
+                        <span>
+                          {connector.id === "injected"
+                            ? "Browser Wallet"
+                            : connector.name}
+                        </span>
+                        <Power className="h-4 w-4 text-[#5eead4]" />
+                      </button>
+                    ))}
+                    <p className="px-3 py-2 text-xs leading-5 text-[#94a3b8]">
+                      MetaMask, OKX, and Base App wallets use Browser Wallet.
+                    </p>
+                  </>
+                )}
               </div>
             ) : null}
           </div>
